@@ -2,14 +2,22 @@ var Note = React.createClass({
 	getInitialState: function(){
 		return {editing: false}
 	},
+	randomBetween: function(min, max){
+		return (min + Math.ceil(Math.random() * max ));
+	},
 	edit: function(){
 		this.setState({editing: true});
 	},
 	save: function(){
+		this.props.onChange(
+			this.props.index,
+			this.refs.newTitle.getDOMNode().value,
+			this.refs.newText.getDOMNode().value
+		)
 		this.setState({editing: false});
 	},
 	remove : function(){
-		alert('removing note');
+		this.props.onRemove(this.props.index);
 	},
 	renderDisplay: function(){
 		return (
@@ -30,7 +38,11 @@ var Note = React.createClass({
 	renderForm: function(){
 		return (
 			<div className="note">
+				<input defaultValue={this.props.title}
+					ref="newTitle"
+					className="form-control"/>
 				<textarea defaultValue={this.props.children}
+					ref="newText"
 					className="form-control">
 				</textarea>
 				<button 
@@ -48,10 +60,10 @@ var Note = React.createClass({
 	}
 });
 
-React.render(
-	<div>
-		<Note title="CE">Consultative Exam</Note>
-		<Note title="MER">Medical Evidence Request</Note>
-		<Note title="TR">Task Request</Note>
-	</div>
-	, document.getElementById('react-container2'));
+// React.render(
+// 	<div>
+// 		<Note title="CE">Consultative Exam</Note>
+// 		<Note title="MER">Medical Evidence Request</Note>
+// 		<Note title="TR">Task Request</Note>
+// 	</div>
+// 	, document.getElementById('react-container2'));

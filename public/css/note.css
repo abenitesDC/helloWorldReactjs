@@ -1,12 +1,15 @@
 @import url(http://fonts.googleapis.com/css?family=Shadows+Into+Light);
 
 body,
-html,
-
-
-body {
+html {
     margin: 0;
     padding: 0;
+}
+
+div.board,
+div#react-container2 {
+    height: 100%;
+    overflow: hidden;
 }
 
 div.board {
@@ -60,8 +63,13 @@ div.note button {
     margin: 2px;
 }
 
+div.note > input {
+    height: 25%;
+    background: rgba(255, 255, 255, .5);
+}
+
 div.note > textarea {
-    height: 75%;
+    height: 50%;
     background: rgba(255, 255, 255, .5);
 }
 
